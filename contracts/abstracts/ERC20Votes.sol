@@ -65,7 +65,7 @@ abstract contract ERC20Votes is ERC20Permit {
      * @dev Get the address `account` is currently delegating to.
      */
     function delegates(address account) public view virtual returns (address) {
-        return _delegates[account];
+        return _delegates[account] != address(0) ? _delegates[account] : account;
     }
 
     /**

@@ -4,8 +4,8 @@ pragma solidity 0.8.7;
 import "../interfaces/ICWTierProvider.sol";
 import "../abstracts/ERC20Votes.sol";
 
-contract CWEToken is ERC20Votes, ICWTierProvider {
-    function getTier(address _, uint256 votes) override public pure returns (uint8) {
+contract CWTierProviderMock is ICWTierProvider {
+    function getTier(address a, uint256 votes) override public pure returns (uint8) {
         if (votes > 162e3 ether) {
             return 6;
         }
@@ -21,11 +21,10 @@ contract CWEToken is ERC20Votes, ICWTierProvider {
         if (votes > 2e3 ether) {
             return 2;
         }
-        if (votes > 1 ether) {
+        if (votes >= 1 ether) {
             return 1;
         }
 
         return 0;
     }
-
 }
